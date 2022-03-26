@@ -18,18 +18,23 @@ public class TankShooting : MonoBehaviour
     private string m_FireButton;         
     private float m_CurrentLaunchForce;  
     private float m_ChargeSpeed;         
-    private bool m_Fired;                
+    private bool m_Fired;         
+
+    VibrationClass vibClass; 
 
 
     private void OnEnable()
     {
         m_CurrentLaunchForce = m_MinLaunchForce;
-        m_AimSlider.value = m_MinLaunchForce;
+        m_AimSlider.value = m_MinLaunchForce;       
+
     }
 
 
     private void Start()
     {
+        vibClass = VibrationClass.SharedInstance;
+
         m_FireButton = "Fire" + m_PlayerNumber;
 
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
@@ -79,8 +84,18 @@ public class TankShooting : MonoBehaviour
         m_ShootingAudio.clip = m_FireClip;
         m_ShootingAudio.Play();
 
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
+        
+        VibrateMobile(500, 200);
 
         m_CurrentLaunchForce = m_MinLaunchForce;
     }
+
+    private void VibrateMobile(long milliseconds, int amplitude){
+        using (AndroidJavaObject effect = VibrationClass.vibrationEffectClass.CallStatic<AndroidJavaObject>("createOneShot", milliseconds, amplitude)){
+            VibrationClass.vibrator.Call("vibrate", effect);
+        }
+
+    }
+
 }

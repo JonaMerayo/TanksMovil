@@ -26,5 +26,13 @@ public class VibrationClass : MonoBehaviour
     
     }
 
+    public AndroidJavaClass getvibrationEffectClass(){
+        return vibrationEffectClass;
+    }
+    
+    public AndroidJavaObject getVibrator(){
+        return vibrator;
+    }
+
     
 }

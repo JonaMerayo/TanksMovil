@@ -86,6 +86,10 @@ public class TankShooting : MonoBehaviour
 
         //Handheld.Vibrate();
         
+        using (AndroidJavaObject effect = vibClass.getvibrationEffectClass().CallStatic<AndroidJavaObject>("createOneShot", 500, 200)){
+            vibClass.getVibrator().Call("vibrate", effect);
+        }
+
         VibrateMobile(500, 200);
 
         m_CurrentLaunchForce = m_MinLaunchForce;

@@ -84,11 +84,7 @@ public class TankShooting : MonoBehaviour
         m_ShootingAudio.clip = m_FireClip;
         m_ShootingAudio.Play();
 
-        //Handheld.Vibrate();
-        
-        using (AndroidJavaObject effect = vibClass.getvibrationEffectClass().CallStatic<AndroidJavaObject>("createOneShot", 500, 200)){
-            vibClass.getVibrator().Call("vibrate", effect);
-        }
+        Handheld.Vibrate();
 
         VibrateMobile(500, 200);
 
@@ -96,10 +92,9 @@ public class TankShooting : MonoBehaviour
     }
 
     private void VibrateMobile(long milliseconds, int amplitude){
-        using (AndroidJavaObject effect = VibrationClass.vibrationEffectClass.CallStatic<AndroidJavaObject>("createOneShot", milliseconds, amplitude)){
-            VibrationClass.vibrator.Call("vibrate", effect);
+        using (AndroidJavaObject effect = vibClass.getvibrationEffectClass().CallStatic<AndroidJavaObject>("createOneShot", milliseconds, amplitude)){
+            vibClass.getVibrator().Call("vibrate", effect);
         }
-
     }
 
 }

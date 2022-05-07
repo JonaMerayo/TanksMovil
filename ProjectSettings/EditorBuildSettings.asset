@@ -8,6 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TanksAR.unity
+    guid: d09bc338a59964a42acd9c9589bc76fd
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: d642658efba177f4bbaebb6a9d4ceb22,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bd0f7565542b30840ba8f0f5d48b91b5,
       type: 2}
